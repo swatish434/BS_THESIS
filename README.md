@@ -81,13 +81,6 @@ python evaluate_models.py
 - `Results/evaluation_metrics.csv`: Detailed metrics.
 - `Results/evaluation_metrics.png`: Visual table of performance.
 
-### 5. Explainer Website
-We provide a local web interface to visualize results interactively.
-```bash
-cd PCBVision_Explainer
-python3 -m http.server 8080
-```
-Open [http://localhost:8080](http://localhost:8080) in your browser.
 
 ## Data Access
 
