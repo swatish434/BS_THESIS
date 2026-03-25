@@ -1,0 +1,24 @@
+# SD1.5 LoRA Training Dependencies
+# Install with: pip install -r requirements_sdlora.txt
+
+# Core (keep existing torch)
+# torch>=2.0.0  # Use your existing PyTorch installation
+# torchvision>=0.15.0
+
+# Diffusers and transformers (compatible versions)
+huggingface_hub==0.20.0
+diffusers==0.26.0
+transformers==4.37.0
+accelerate==0.26.0
+
+# LoRA
+peft==0.8.0
+
+# Memory optimization (will warn about torch version, but works)
+xformers>=0.0.23
+
+# Utils
+tensorboard
+tqdm
+pillow
+numpy

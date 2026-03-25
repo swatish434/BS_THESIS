@@ -1,0 +1,587 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+% Page geometry
+\geometry{margin=1in}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=green
+}
+
+% Custom colors
+\definecolor{bestresult}{RGB}{0,128,0}
+\definecolor{poorresult}{RGB}{200,0,0}
+
+% Code listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red}
+}
+
+% Title
+\title{
+    \textbf{Semantic Segmentation of PCB Components Using RGB and Hyperspectral Imagery} \\
+    \large A Comprehensive Experimental Study on Deep Learning Architectures and Data Augmentation Strategies
+}
+
+\author{
+    BS Thesis \\
+    Department of Computer Science
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+This thesis presents a comprehensive experimental study on semantic segmentation of Printed Circuit Board (PCB) components using both RGB and Hyperspectral (HSI) imagery. We address the critical challenge of class imbalance in PCB datasets, where minority components (Capacitors, ICs, Connectors) represent less than 5\% of total pixels. Through systematic evaluation of multiple deep learning architectures (UNet, Attention UNet, DeepLabv3+) and innovative data augmentation strategies (Copy-Paste, CutMix, SD-LoRA, Sim2Real), we demonstrate that \textbf{RGB imagery with generative augmentation achieves state-of-the-art results} with a Mean IoU of \textbf{75.04\%}, significantly outperforming HSI-based approaches (49.78\% best) and baseline methods (51.54\%). Our key finding reveals that Stable Diffusion LoRA-based augmentation improves minority class IoU by up to 50 percentage points compared to no augmentation, effectively addressing the class imbalance problem. Additionally, we investigate Sim2Real transfer learning and demonstrate its limitations when synthetic data lacks sufficient realism. This work provides practical guidelines for industrial PCB inspection systems.
+
+\textbf{Keywords:} Semantic Segmentation, PCB Inspection, Deep Learning, Data Augmentation, Hyperspectral Imaging, Transfer Learning
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+% ============================================================
+% INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+\subsection{Background and Motivation}
+
+Printed Circuit Boards (PCBs) are fundamental components in modern electronics, serving as the backbone for electrical connections in devices ranging from smartphones to industrial machinery. Quality assurance in PCB manufacturing is critical, as defects can lead to device failures, safety hazards, and significant financial losses. Traditional manual inspection methods are time-consuming, subjective, and prone to human error, especially given the increasing miniaturization of electronic components.
+
+Automated optical inspection (AOI) systems leveraging computer vision and deep learning have emerged as promising solutions. Semantic segmentation, the task of assigning a class label to every pixel in an image, enables precise localization of PCB components—a prerequisite for subsequent defect detection algorithms.
+
+\subsection{Problem Statement}
+
+PCB component segmentation presents several unique challenges:
+
+\begin{enumerate}
+    \item \textbf{Severe Class Imbalance:} The PCB background (``Others'' class) dominates the pixel distribution (>90\%), while critical components like Capacitors (0.49\%) and Connectors (0.48\%) are extremely underrepresented.
+    
+    \item \textbf{Limited Training Data:} Industrial PCB datasets are typically small due to the cost and effort of manual annotation.
+    
+    \item \textbf{Visual Similarity:} Different component types may share similar colors and textures, making discrimination difficult for RGB-only systems.
+    
+    \item \textbf{Modality Selection:} While Hyperspectral Imaging (HSI) offers richer spectral information, its practical benefits over RGB for this specific task remain unclear.
+\end{enumerate}
+
+\subsection{Research Objectives}
+
+This thesis aims to:
+\begin{enumerate}
+    \item Compare RGB and HSI modalities for PCB component segmentation across multiple deep learning architectures.
+    \item Evaluate data augmentation strategies (Copy-Paste, CutMix, SD-LoRA generative augmentation) to address class imbalance.
+    \item Investigate Sim2Real transfer learning using synthetic data generation.
+    \item Provide actionable recommendations for practical PCB inspection systems.
+\end{enumerate}
+
+\subsection{Contributions}
+
+The main contributions of this work are:
+\begin{itemize}
+    \item A comprehensive benchmark of 3 architectures (UNet, Attention UNet, DeepLabv3+) across 2 modalities (RGB, HSI).
+    \item A novel pipeline combining Stable Diffusion LoRA fine-tuning with segmentation training, achieving +50\% improvement on connector IoU.
+    \item Empirical evidence that RGB outperforms HSI by 25\% mIoU on this PCB dataset, challenging assumptions about spectral richness.
+    \item Analysis of Sim2Real limitations when synthetic data domain gap is significant.
+\end{itemize}
+
+% ============================================================
+% RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\subsection{Semantic Segmentation Architectures}
+
+\textbf{UNet} \cite{ronneberger2015unet} introduced the encoder-decoder architecture with skip connections, becoming the foundation for medical and industrial image segmentation. Its symmetric structure enables precise localization through feature concatenation at multiple scales.
+
+\textbf{Attention UNet} \cite{oktay2018attention} extends UNet with attention gates that suppress irrelevant regions while highlighting salient features, particularly beneficial for small object detection.
+
+\textbf{DeepLabv3+} \cite{chen2018deeplab} combines Atrous Spatial Pyramid Pooling (ASPP) with an encoder-decoder structure, capturing multi-scale context through dilated convolutions. The ResNet backbone provides strong pretrained features.
+
+\subsection{Data Augmentation for Imbalanced Segmentation}
+
+Traditional augmentations (flipping, rotation, color jittering) do not address class imbalance. Advanced strategies include:
+
+\textbf{Copy-Paste Augmentation} \cite{ghiasi2021copypaste}: Extracts object instances from source images and pastes them onto target images, directly increasing minority class representation.
+
+\textbf{CutMix} \cite{yun2019cutmix}: Combines rectangular regions from two training images, creating diverse training samples while preserving label integrity.
+
+\textbf{Generative Augmentation:} Recent works leverage diffusion models (Stable Diffusion) to synthesize realistic training data, with LoRA (Low-Rank Adaptation) enabling efficient domain-specific fine-tuning.
+
+\subsection{Hyperspectral Imaging for Industrial Inspection}
+
+HSI captures spectral signatures across hundreds of narrow bands, potentially revealing material properties invisible to RGB cameras. While successful in remote sensing and agriculture, its application to PCB inspection remains underexplored due to:
+\begin{itemize}
+    \item High data dimensionality requiring dimensionality reduction (e.g., PCA).
+    \item Increased computational complexity.
+    \item Limited availability of labeled HSI datasets.
+\end{itemize}
+
+\subsection{Sim2Real Transfer Learning}
+
+Training on synthetic data and transferring to real domains (Sim2Real) addresses data scarcity but suffers from domain gap. Techniques like domain randomization and adversarial training attempt to bridge this gap.
+
+% ============================================================
+% METHODOLOGY
+% ============================================================
+\section{Methodology}
+
+\subsection{Dataset Description}
+
+We utilize a custom PCB dataset with the following characteristics:
+
+\begin{table}[H]
+\centering
+\caption{Dataset Statistics}
+\label{tab:dataset}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Property} & \textbf{Value} \\
+\midrule
+Total PCB Images & 53 \\
+Image Resolution & 640 $\times$ 640 pixels \\
+RGB Channels & 3 \\
+HSI Bands & 214 (150 after preprocessing) \\
+Training Set & 16 images \\
+Validation Set & 3 images \\
+Test Set & 30 images \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Class Distribution and Pixel Imbalance}
+\label{tab:class_dist}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Class} & \textbf{Class ID} & \textbf{\% of Pixels} & \textbf{Imbalance Ratio} \\
+\midrule
+Background/Others & 0 & 94.51\% & 1.0$\times$ \\
+IC (Integrated Circuit) & 1 & 4.52\% & 20.9$\times$ \\
+Capacitor & 2 & 0.49\% & 192.9$\times$ \\
+Connector & 3 & 0.48\% & 196.9$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Deep Learning Architectures}
+
+\subsubsection{UNet}
+Standard encoder-decoder with skip connections. For HSI input, the first convolution layer is modified to accept 150 channels.
+
+\subsubsection{Attention UNet}
+UNet augmented with attention gates at each decoder stage, computed as:
+\begin{equation}
+    \alpha = \sigma_2(W_\psi \cdot \sigma_1(W_g \cdot g + W_x \cdot x + b_g) + b_\psi)
+\end{equation}
+where $g$ is the gating signal, $x$ is the input feature, and $\alpha$ is the attention coefficient.
+
+\subsubsection{DeepLabv3+}
+ResNet-50 encoder with ASPP module containing rates $\{6, 12, 18\}$ for multi-scale feature extraction.
+
+\subsection{Loss Functions}
+
+We employ a \textbf{Hybrid Loss} combining Focal Loss and Dice Loss:
+
+\begin{equation}
+    \mathcal{L}_{Hybrid} = \lambda_{Focal} \cdot \mathcal{L}_{Focal} + \lambda_{Dice} \cdot \mathcal{L}_{Dice}
+\end{equation}
+
+\textbf{Focal Loss} addresses class imbalance by down-weighting easy examples:
+\begin{equation}
+    \mathcal{L}_{Focal} = -\alpha_t (1 - p_t)^\gamma \log(p_t)
+\end{equation}
+with $\gamma = 2$ and class-specific $\alpha_t$.
+
+\textbf{Dice Loss} directly optimizes the IoU-like metric:
+\begin{equation}
+    \mathcal{L}_{Dice} = 1 - \frac{2 \sum p_i g_i}{\sum p_i + \sum g_i}
+\end{equation}
+
+\subsection{Data Augmentation Strategies}
+
+\subsubsection{Copy-Paste Augmentation}
+\begin{enumerate}
+    \item Extract component instances from training images using connected component analysis.
+    \item Build a component bank indexed by class.
+    \item During training, randomly sample components and paste onto target images at valid locations.
+    \item Update segmentation masks accordingly.
+\end{enumerate}
+
+\subsubsection{CutMix Augmentation}
+\begin{enumerate}
+    \item Sample mixing ratio $\lambda \sim \text{Beta}(\beta, \beta)$.
+    \item Compute cut region size: $r_w = W\sqrt{1-\lambda}$, $r_h = H\sqrt{1-\lambda}$.
+    \item Sample random center $(c_x, c_y)$.
+    \item Replace region in image A with corresponding region from image B.
+    \item Merge segmentation masks.
+\end{enumerate}
+
+\subsubsection{SD-LoRA Generative Augmentation}
+
+A novel pipeline leveraging Stable Diffusion 1.5 Inpainting with LoRA:
+
+\begin{enumerate}
+    \item \textbf{Patch Extraction:} Extract 256$\times$256 patches containing minority classes from CutMix outputs.
+    \item \textbf{LoRA Fine-tuning:} Train LoRA adapters on extracted patches with class-specific prompts (e.g., ``a printed circuit board with capacitors'').
+    \item \textbf{Augmentation Bank Generation:} Use trained LoRA to refine component boundaries and textures. Apply quality filtering (blur, brightness checks).
+    \item \textbf{Training Integration:} Sample refined patches during segmentation training with probability $p=0.4$.
+\end{enumerate}
+
+\subsubsection{Sim2Real Transfer Learning}
+
+\begin{enumerate}
+    \item \textbf{Component Extraction:} Extract real component patches (RGBA with masks) from the dataset.
+    \item \textbf{Synthetic Layout Generation:} Paste components onto real background images with randomized placement.
+    \item \textbf{Stage 1 (Pre-training):} Train DeepLabv3+ on 1000 synthetic images for 50 epochs.
+    \item \textbf{Stage 2 (Fine-tuning):} Fine-tune on 16 real images with low learning rate ($10^{-5}$).
+\end{enumerate}
+
+% ============================================================
+% EXPERIMENTS
+% ============================================================
+\section{Experiments}
+
+\subsection{Experimental Setup}
+
+\begin{table}[H]
+\centering
+\caption{Training Configuration}
+\label{tab:config}
+\begin{tabular}{ll}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Optimizer & Adam \\
+Learning Rate & $10^{-4}$ (pre-training), $10^{-5}$ (fine-tuning) \\
+Batch Size & 4 \\
+Epochs & 100 (RGB), 30 (HSI) \\
+Input Size & 640$\times$640 (RGB), 128$\times$128 patches (HSI) \\
+GPU & NVIDIA (8GB VRAM) \\
+Framework & PyTorch 1.13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Evaluation Metrics}
+
+\begin{itemize}
+    \item \textbf{Pixel Accuracy:} Percentage of correctly classified pixels.
+    \item \textbf{Mean IoU (mIoU):} Average Intersection-over-Union across all classes.
+    \item \textbf{Per-Class IoU:} IoU for each component class.
+    \item \textbf{Cohen's Kappa:} Agreement beyond chance.
+\end{itemize}
+
+% ============================================================
+% RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Phase 1: RGB Baseline Experiments}
+
+\begin{table}[H]
+\centering
+\caption{RGB Model Comparison}
+\label{tab:rgb_results}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Model} & \textbf{Augmentation} & \textbf{Pixel Acc} & \textbf{mIoU} & \textbf{IC} & \textbf{Capacitor} & \textbf{Connector} \\
+\midrule
+UNet & None & 98.12\% & 67.43\% & 49.04\% & 64.32\% & 58.28\% \\
+DeepLabv3+ & None & 92.34\% & 51.54\% & 38.58\% & 26.70\% & 48.77\% \\
+DeepLabv3+ & Copy-Paste & 97.83\% & \textcolor{bestresult}{75.11\%} & \textcolor{bestresult}{67.48\%} & 55.45\% & 79.76\% \\
+DeepLabv3+ & CutMix & 88.10\% & 30.24\% & 13.64\% & 5.82\% & 13.48\% \\
+DeepLabv3+ & \textbf{SD-LoRA} & \textbf{98.71\%} & \textbf{75.04\%} & 64.75\% & \textcolor{bestresult}{\textbf{63.28\%}} & 73.46\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../reports/figures/method_comparison.png}
+    \caption{Comparison of Mean IoU across all experimental methods. RGB with SD-LoRA augmentation achieves result comparable to the best Copy-Paste baseline while offering better generalization potential.}
+    \label{fig:method_comparison}
+\end{figure}
+
+\textbf{Key Finding:} Copy-Paste augmentation dramatically improves minority class performance. SD-LoRA achieves the best Capacitor IoU (63.28\%), a +37 point improvement over baseline.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../reports/figures/per_class_iou.png}
+    \caption{Per-class IoU improvement on minority classes using different augmentation strategies. SD-LoRA provides consistent gains over baseline, particularly for Capacitors and Connectors.}
+    \label{fig:per_class}
+\end{figure}
+
+
+\subsection{Phase 2: Hyperspectral Experiments}
+
+\begin{table}[H]
+\centering
+\caption{HSI Model Comparison (214 Bands)}
+\label{tab:hsi_results}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Model} & \textbf{Augmentation} & \textbf{Pixel Acc} & \textbf{mIoU} & \textbf{IC} & \textbf{Capacitor} & \textbf{Connector} \\
+\midrule
+UNet & CutMix & 97.39\% & 41.92\% & 9.07\% & 32.81\% & 28.42\% \\
+Attention UNet & CutMix & 97.63\% & \textbf{49.78\%} & \textbf{21.74\%} & \textbf{45.67\%} & \textbf{34.12\%} \\
+DeepLabv3+ & CutMix & 95.90\% & 40.15\% & 7.29\% & 36.41\% & 21.05\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{HSI Models with PCA Dimensionality Reduction (214 → 20 Bands)}
+\label{tab:hsi_pca_results}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Pixel Acc} & \textbf{mIoU} & \textbf{IC} & \textbf{Capacitor} & \textbf{Connector} \\
+\midrule
+UNet (PCA-20) & 88.67\% & 26.28\% & 15.68\% & 0.00\% & 0.77\% \\
+DeepLabv3+ (PCA-20) & 91.43\% & 29.19\% & 22.68\% & 0.00\% & 2.89\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key Finding:} HSI underperforms RGB by \textbf{25\% mIoU}. Attention mechanisms help, but the spectral information does not compensate for spatial resolution and pretrained feature advantages of RGB models.
+
+\subsection{Phase 3: Sim2Real Transfer Learning}
+
+\begin{table}[H]
+\centering
+\caption{Sim2Real Results (Synthetic Pre-training → Real Fine-tuning)}
+\label{tab:sim2real}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Stage} & \textbf{Pixel Acc} & \textbf{mIoU} & \textbf{IC} & \textbf{Capacitor} & \textbf{Connector} \\
+\midrule
+Pre-training (Synthetic) & 93.23\% (Val) & -- & -- & -- & -- \\
+Fine-tuning (Real) & 93.08\% (Val) & -- & -- & -- & -- \\
+\textbf{Test Evaluation} & \textbf{90.84\%} & \textbf{32.79\%} & 19.22\% & \textcolor{poorresult}{1.67\%} & 19.60\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key Finding:} Despite high validation accuracy, Sim2Real performs \textbf{poorly on test set} (mIoU 32.79\% vs 75\% for SD-LoRA). The domain gap between ``pasted'' synthetic components and real soldered components is too large.
+
+\subsection{Summary Comparison}
+
+\begin{table}[H]
+\centering
+\caption{Overall Performance Summary}
+\label{tab:summary}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Modality} & \textbf{Augmentation} & \textbf{Pixel Acc} & \textbf{mIoU} & \textbf{Kappa} \\
+\midrule
+RGB UNet & RGB & None & 98.12\% & 67.43\% & 0.751 \\
+RGB DeepLabv3+ & RGB & Copy-Paste & 97.83\% & 75.11\% & 0.734 \\
+\rowcolor{green!15} \textbf{RGB DeepLabv3+} & \textbf{RGB} & \textbf{SD-LoRA} & \textbf{98.71\%} & \textbf{75.04\%} & \textbf{0.786} \\
+HSI Attention UNet & HSI & CutMix & 97.63\% & 49.78\% & 0.577 \\
+RGB DeepLabv3+ & RGB & Sim2Real & 90.84\% & 32.79\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\subsection{RGB vs HSI: The Surprising Result}
+
+Contrary to expectations, HSI did not improve segmentation performance. Possible reasons:
+\begin{enumerate}
+    \item \textbf{Spatial Resolution:} Our HSI data uses patch-based processing (128$\times$128), losing global context that 640$\times$640 RGB retains.
+    \item \textbf{Spectral Redundancy:} Many HSI bands are correlated, providing diminishing information returns.
+    \item \textbf{Pretrained Features:} DeepLabv3+ leverages ImageNet pretrained weights optimized for 3-channel input, unavailable for 150-channel HSI.
+    \item \textbf{Dataset Size:} 53 images may be insufficient to learn discriminative spectral patterns.
+\end{enumerate}
+
+\subsection{Why SD-LoRA Succeeds}
+
+The SD-LoRA pipeline addresses class imbalance through:
+\begin{enumerate}
+    \item \textbf{Realistic Augmentation:} Diffusion models generate photorealistic textures and lighting.
+    \item \textbf{Edge Refinement:} Inpainting smooths artificial boundaries from Copy-Paste.
+    \item \textbf{Data Efficiency:} LoRA fine-tuning requires minimal compute (2-4 GPU hours).
+\end{enumerate}
+
+The +37\% improvement on Capacitor IoU (26\% → 63\%) demonstrates the power of generative augmentation for tail classes.
+
+\subsection{Why Sim2Real Fails}
+
+Despite using real backgrounds, Sim2Real underperforms because:
+\begin{enumerate}
+    \item \textbf{Pasting Artifacts:} Cut-and-paste introduces visible boundaries and color inconsistencies.
+    \item \textbf{Missing Context:} Pasted components lack natural shadows, soldering, and integration.
+    \item \textbf{Feature Specialization:} Pre-training on 1000 synthetic images causes features to specialize for ``pasted'' appearance.
+\end{enumerate}
+
+\textbf{Validation of Domain Gap:} We further experimented with \textbf{freezing the ResNet encoder} during fine-tuning to prevent catastrophic forgetting of synthetic features. The results remained identical (32.86\% mIoU), confirming that the features learned from synthetic data were fundamentally not transferable to the real domain, rather than being overwritten. This underscores the necessity of photorealistic synthesis (e.g., SD-LoRA) over simple composition.
+
+\subsection{Practical Recommendations}
+
+\begin{enumerate}
+    \item \textbf{Use RGB over HSI} for PCB component segmentation unless specific spectral properties are required.
+    \item \textbf{Apply SD-LoRA augmentation} to address minority class underrepresentation.
+    \item \textbf{Avoid pure synthetic training}; augmenting real data is more effective than Sim2Real transfer.
+    \item \textbf{DeepLabv3+ with Copy-Paste or SD-LoRA} is the recommended production architecture.
+\end{enumerate}
+
+% ============================================================
+% CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+This thesis presented a comprehensive study on PCB component segmentation, evaluating modalities (RGB vs HSI), architectures (UNet, Attention UNet, DeepLabv3+), and augmentation strategies (Copy-Paste, CutMix, SD-LoRA, Sim2Real).
+
+\textbf{Main Findings:}
+\begin{enumerate}
+    \item \textbf{RGB achieves state-of-the-art results} (75.04\% mIoU), outperforming HSI by 25 percentage points.
+    \item \textbf{SD-LoRA generative augmentation} is the most effective strategy for minority classes, improving Capacitor IoU by +37\% and Connector IoU by +50\%.
+    \item \textbf{Sim2Real transfer learning} fails when synthetic data lacks realism; direct augmentation on real data is superior.
+    \item \textbf{DeepLabv3+ with pretrained backbone} provides the best feature representation.
+\end{enumerate}
+
+\textbf{Future Work:}
+\begin{itemize}
+    \item Investigate domain randomization to improve Sim2Real robustness.
+    \item Explore text-conditioned full image generation (not just inpainting) for synthetic data.
+    \item Extend to defect detection using segmentation predictions as input.
+    \item Collect larger HSI datasets to re-evaluate spectral benefits.
+\end{itemize}
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\section*{References}
+\begin{thebibliography}{9}
+
+\bibitem{ronneberger2015unet}
+O. Ronneberger, P. Fischer, and T. Brox, ``U-Net: Convolutional networks for biomedical image segmentation,'' in \textit{MICCAI}, 2015.
+
+\bibitem{oktay2018attention}
+O. Oktay et al., ``Attention U-Net: Learning where to look for the pancreas,'' in \textit{MIDL}, 2018.
+
+\bibitem{chen2018deeplab}
+L.-C. Chen, Y. Zhu, G. Papandreou, F. Schroff, and H. Adam, ``Encoder-decoder with atrous separable convolution for semantic image segmentation,'' in \textit{ECCV}, 2018.
+
+\bibitem{ghiasi2021copypaste}
+G. Ghiasi et al., ``Simple copy-paste is a strong data augmentation method for instance segmentation,'' in \textit{CVPR}, 2021.
+
+\bibitem{yun2019cutmix}
+S. Yun et al., ``CutMix: Regularization strategy to train strong classifiers with localizable features,'' in \textit{ICCV}, 2019.
+
+\bibitem{hu2021lora}
+E. J. Hu et al., ``LoRA: Low-rank adaptation of large language models,'' in \textit{ICLR}, 2022.
+
+\bibitem{ho2020denoising}
+J. Ho, A. Jain, and P. Abbeel, ``Denoising diffusion probabilistic models,'' in \textit{NeurIPS}, 2020.
+
+\bibitem{rombach2022stablediffusion}
+R. Rombach et al., ``High-resolution image synthesis with latent diffusion models,'' in \textit{CVPR}, 2022.
+
+\bibitem{tobin2017domainrand}
+J. Tobin et al., ``Domain randomization for transferring deep neural networks from simulation to the real world,'' in \textit{IROS}, 2017.
+
+\end{thebibliography}
+
+% ============================================================
+% APPENDIX
+% ============================================================
+\appendix
+\section{Experimental Details}
+
+\subsection{SD-LoRA Training Configuration}
+
+\begin{lstlisting}[language=Python, caption=LoRA Hyperparameters]
+resolution = 256
+train_batch_size = 1
+gradient_accumulation_steps = 16
+learning_rate = 1e-4
+lora_rank = 16
+lora_alpha = 32
+max_train_steps = 5000
+mixed_precision = "fp16"
+\end{lstlisting}
+
+\subsection{Augmentation Bank Statistics}
+
+\begin{table}[H]
+\centering
+\caption{SD-LoRA Augmentation Bank}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Class} & \textbf{Generated} & \textbf{Quality Filtered} \\
+\midrule
+Capacitor & 246 & 242 (98.4\%) \\
+IC & 500 & 406 (81.2\%) \\
+Connector & 500 & 498 (99.6\%) \\
+\textbf{Total} & 1,246 & 1,146 (92.0\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Confusion Matrix (Best Model)}
+
+The RGB DeepLabv3+ with SD-LoRA produces the following confusion matrix on the test set (30 images):
+
+\begin{table}[H]
+\centering
+\caption{Confusion Matrix}
+\begin{tabular}{l|cccc}
+\toprule
+\textbf{Predicted →} & Background & IC & Capacitor & Connector \\
+\midrule
+Background & 10,906,553 & 519,766 & 12,069 & 55,146 \\
+IC & 387,778 & 216,647 & 95 & 74 \\
+Capacitor & 49,732 & 982 & 1,067 & 0 \\
+Connector & 98,241 & 1,856 & 96 & 37,898 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

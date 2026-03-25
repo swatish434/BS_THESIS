@@ -1,0 +1,2 @@
+Error: Please provide the training process ID
+Usage: ./auto_eval_after_training.sh <PID>

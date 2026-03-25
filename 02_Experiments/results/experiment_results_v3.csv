@@ -1,0 +1,93 @@
+exp_id,modality,model,augmentation,best_val_miou,best_val_pixel_acc,best_epoch,total_epochs_run,duration_min,status
+1,RGB,DeepLabV3+,None,0.8621,0.9754,96,100,15.2,OK
+2,RGB,DeepLabV3+,Copy-Paste,0.8657,0.9747,88,100,15.1,OK
+3,RGB,DeepLabV3+,CutMix,0.8658,0.9756,97,100,14.8,OK
+4,RGB,Hybrid SSRN-ViT,None,0.749,0.9552,50,100,202.7,OK
+5,RGB,Hybrid SSRN-ViT,Copy-Paste,0.7466,0.951,64,100,201.7,OK
+6,RGB,Hybrid SSRN-ViT,CutMix,0.7828,0.9576,76,100,225.2,OK
+7,RGB,MambaHSI,None,0.5405,0.8593,92,100,8.7,OK
+8,RGB,MambaHSI,Copy-Paste,0.5409,0.8588,79,100,8.6,OK
+9,RGB,MambaHSI,CutMix,0.5719,0.8682,93,100,8.7,OK
+10,HSI,DeepLabV3+,None,0.3563,0.9505,67,100,22.1,OK
+11,HSI,DeepLabV3+,Copy-Paste,0.324,0.8888,55,100,33.6,OK
+12,HSI,DeepLabV3+,CutMix,0.4771,0.9643,57,100,32.7,OK
+13,HSI,Hybrid SSRN-ViT,None,0.4914,0.9723,86,100,303.3,OK
+14,HSI,Hybrid SSRN-ViT,Copy-Paste,0.3249,0.8616,100,100,309.0,OK
+15,HSI,Hybrid SSRN-ViT,CutMix,0.3679,0.928,68,100,309.6,OK
+16,HSI,MambaHSI,None,0.3802,0.9536,47,100,26.4,OK
+17,HSI,MambaHSI,Copy-Paste,0.3647,0.9298,60,100,36.2,OK
+18,HSI,MambaHSI,CutMix,0.3757,0.9472,39,100,36.7,OK
+19,RGB+HSI,DeepLabV3+,None,0.3835,0.9599,97,100,40.2,OK
+20,RGB+HSI,DeepLabV3+,Copy-Paste,0.4551,0.9635,62,100,61.6,OK
+21,RGB+HSI,DeepLabV3+,CutMix,0.466,0.9639,50,100,61.0,OK
+22,RGB+HSI,Hybrid SSRN-ViT,None,0.2374,0.94,1,100,318.5,OK
+23,HSI,MambaHSI,CutMix,0.3944,0.9426,62,100,34.3,OK
+24,HSI,MambaHSI,Generative,N/A,N/A,N/A,N/A,N/A,"FAILED:Caught ImportError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 93, in load
+    from diffusers import StableDiffusionInpaintPipeline
+ModuleNotFoundError: No module named 'diffusers'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/samiran_iiserb/miniconda3/envs/PCBVision/lib/python3.14/site-packages/torch/utils/data/_utils/worker.py"", line 358, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File ""/home/samiran_iiserb/miniconda3/envs/PCBVision/lib/python3.14/site-packages/torch/utils/data/_utils/fetch.py"", line 54, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/dataset.py"", line 199, in __getitem__
+    img_data, mask = apply_augmentation(
+                     ~~~~~~~~~~~~~~~~~~^
+        img_data, mask, img_b, mask_b, self.augmentation)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/augmentations.py"", line 298, in apply_augmentation
+    return apply_generative(img_a, mask_a)
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 294, in apply_generative
+    return generative_augment(img_a, mask_a, n_instances=2)
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 203, in generative_augment
+    inpainter = get_inpainter()
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 181, in get_inpainter
+    _inpainter.load()
+    ~~~~~~~~~~~~~~~^^
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 103, in load
+    raise ImportError(
+        ""diffusers not installed. Run: pip install diffusers transformers accelerate"")
+ImportError: diffusers not installed. Run: pip install diffusers transformers accelerate
+"
+25,RGB+HSI,DeepLabV3+,None,0.6451,0.9825,43,100,37.2,OK
+26,RGB+HSI,DeepLabV3+,Copy-Paste,0.617,0.9812,56,100,58.7,OK
+27,RGB+HSI,DeepLabV3+,CutMix,0.6323,0.9787,22,100,57.1,OK
+28,RGB+HSI,DeepLabV3+,Generative,N/A,N/A,N/A,N/A,N/A,"FAILED:Caught ImportError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 93, in load
+    from diffusers import StableDiffusionInpaintPipeline
+ModuleNotFoundError: No module named 'diffusers'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File ""/home/samiran_iiserb/miniconda3/envs/PCBVision/lib/python3.14/site-packages/torch/utils/data/_utils/worker.py"", line 358, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File ""/home/samiran_iiserb/miniconda3/envs/PCBVision/lib/python3.14/site-packages/torch/utils/data/_utils/fetch.py"", line 54, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/dataset.py"", line 199, in __getitem__
+    img_data, mask = apply_augmentation(
+                     ~~~~~~~~~~~~~~~~~~^
+        img_data, mask, img_b, mask_b, self.augmentation)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/augmentations.py"", line 298, in apply_augmentation
+    return apply_generative(img_a, mask_a)
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 294, in apply_generative
+    return generative_augment(img_a, mask_a, n_instances=2)
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 203, in generative_augment
+    inpainter = get_inpainter()
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 181, in get_inpainter
+    _inpainter.load()
+    ~~~~~~~~~~~~~~~^^
+  File ""/home/samiran_iiserb/asip_lab/UG/SWATISH/BS_THESIS/PCBVision/02_Experiments/generative_augmentation.py"", line 103, in load
+    raise ImportError(
+        ""diffusers not installed. Run: pip install diffusers transformers accelerate"")
+ImportError: diffusers not installed. Run: pip install diffusers transformers accelerate
+"

@@ -1,0 +1,18 @@
+Deprecated: use `PCBVision/requirements.txt` (pinned versions).
+
+# Kept for backward compatibility with older scripts.
+numpy
+matplotlib
+spectral
+scipy
+seaborn
+opencv-python
+torch
+torchvision
+pillow
+tqdm
+scikit-learn
+
+
+
+

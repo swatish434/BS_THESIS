@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.pyo
+
+.ipynb_checkpoints/
+
+# Artifacts / checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Logs
+*.log
+training_pid.txt
+
+# Large generated datasets / outputs
+Evaluation/
+Results/
+RGB_Experiments/results/
+HSI_Experiments/results/
+archive/
+
+# Local virtualenv / embedded environment (not source code)
+pcb_vision/
+
+# OS
+.DS_Store
+Thumbs.db
+01_Data/

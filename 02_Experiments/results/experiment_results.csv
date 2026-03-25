@@ -1,0 +1,136 @@
+exp_id,modality,model,augmentation,best_val_miou,best_val_pixel_acc,best_epoch,total_epochs_run,duration_min,status
+1,RGB,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+2,RGB,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+3,RGB,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+4,RGB,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+5,RGB,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+6,RGB,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+7,RGB,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+8,RGB,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+9,RGB,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+10,HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+11,HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+12,HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+13,HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+14,HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+15,HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+16,HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+17,HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+18,HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+19,RGB+HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+20,RGB+HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+21,RGB+HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+22,RGB+HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+23,RGB+HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+24,RGB+HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+25,RGB+HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+26,RGB+HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+27,RGB+HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+1,RGB,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+2,RGB,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+3,RGB,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+4,RGB,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+5,RGB,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+6,RGB,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+7,RGB,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+8,RGB,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+9,RGB,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+10,HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+11,HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+12,HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+13,HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+14,HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+15,HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+16,HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+17,HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+18,HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+19,RGB+HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+20,RGB+HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+21,RGB+HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+22,RGB+HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+23,RGB+HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+24,RGB+HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+25,RGB+HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+26,RGB+HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+27,RGB+HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+1,RGB,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+2,RGB,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+3,RGB,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+4,RGB,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+5,RGB,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+6,RGB,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+7,RGB,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+8,RGB,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+9,RGB,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+10,HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+11,HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+12,HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+13,HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+14,HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+15,HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+16,HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+17,HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+18,HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+19,RGB+HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+20,RGB+HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+21,RGB+HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+22,RGB+HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+23,RGB+HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+24,RGB+HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+25,RGB+HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+26,RGB+HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+27,RGB+HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /media/bs_thesis/DEF2F39DF2F377DB/Documents/BS_THESIS/DATASETS/PCBDataset/RGB
+1,RGB,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+2,RGB,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+3,RGB,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+4,RGB,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+5,RGB,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+6,RGB,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+7,RGB,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+8,RGB,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+9,RGB,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+10,HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+11,HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+12,HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+13,HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+14,HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+15,HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+16,HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+17,HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+18,HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+19,RGB+HSI,DeepLabV3+,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+20,RGB+HSI,DeepLabV3+,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+21,RGB+HSI,DeepLabV3+,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+22,RGB+HSI,Hybrid SSRN-ViT,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+23,RGB+HSI,Hybrid SSRN-ViT,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+24,RGB+HSI,Hybrid SSRN-ViT,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+25,RGB+HSI,MambaHSI,None,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+26,RGB+HSI,MambaHSI,Copy-Paste,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+27,RGB+HSI,MambaHSI,CutMix,N/A,N/A,N/A,N/A,N/A,FAILED: No image files found in /home/bs_thesis/Documents/BS_THESIS/PCBVision/01_Data/Patches_256_Overlap_Data/RGB
+1,RGB,DeepLabV3+,None,0.471,0.9505,44,59,1.8,OK
+2,RGB,DeepLabV3+,Copy-Paste,0.3279,0.8927,10,25,1.0,OK
+3,RGB,DeepLabV3+,CutMix,0.3081,0.8895,10,25,1.0,OK
+4,RGB,Hybrid SSRN-ViT,None,0.2992,0.9303,39,54,4.5,OK
+5,RGB,Hybrid SSRN-ViT,Copy-Paste,0.2906,0.9254,30,45,4.1,OK
+6,RGB,Hybrid SSRN-ViT,CutMix,0.311,0.9232,52,67,6.0,OK
+7,RGB,MambaHSI,None,0.3543,0.932,17,32,0.8,OK
+8,RGB,MambaHSI,Copy-Paste,0.3634,0.9363,28,43,1.6,OK
+9,RGB,MambaHSI,CutMix,0.3504,0.9322,13,28,1.1,OK
+10,HSI,DeepLabV3+,None,0.013,0.0521,1,16,0.9,OK
+11,HSI,DeepLabV3+,Copy-Paste,0.2325,0.9302,1,16,1.2,OK
+12,HSI,DeepLabV3+,CutMix,0.0002,0.0008,1,16,1.2,OK
+13,HSI,Hybrid SSRN-ViT,None,0.2325,0.9302,11,26,23.1,OK
+14,HSI,Hybrid SSRN-ViT,Copy-Paste,0.2325,0.9302,11,26,23.0,OK
+15,HSI,Hybrid SSRN-ViT,CutMix,0.0341,0.1257,16,31,27.4,OK
+16,HSI,MambaHSI,None,0.2325,0.9302,1,16,0.8,OK
+17,HSI,MambaHSI,Copy-Paste,0.0106,0.04,20,35,2.5,OK
+18,HSI,MambaHSI,CutMix,0.2325,0.9302,1,16,1.2,OK
+19,RGB+HSI,DeepLabV3+,None,0.2325,0.9302,8,23,1.7,OK
+20,RGB+HSI,DeepLabV3+,Copy-Paste,0.2334,0.9302,19,34,3.1,OK
+21,RGB+HSI,DeepLabV3+,CutMix,0.2325,0.9302,8,23,2.1,OK
+22,RGB+HSI,Hybrid SSRN-ViT,None,0.3006,0.9308,21,36,33.2,OK
+23,RGB+HSI,Hybrid SSRN-ViT,Copy-Paste,0.3384,0.9338,93,100,93.5,OK
+24,RGB+HSI,Hybrid SSRN-ViT,CutMix,0.3012,0.9272,33,48,44.9,OK
+25,RGB+HSI,MambaHSI,None,0.3501,0.9314,15,30,2.2,OK
+26,RGB+HSI,MambaHSI,Copy-Paste,0.3917,0.9376,33,48,4.4,OK
+27,RGB+HSI,MambaHSI,CutMix,0.3775,0.934,32,47,4.4,OK
