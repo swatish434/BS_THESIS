@@ -96,21 +96,6 @@ To utilize the dataset, you can access our newly organized data directly from Go
 
 Alternatively, you can download the original raw datasets from the Rodare website: [Rodare](https://rodare.hzdr.de/record/2704), or from Zenodo: [Zenodo](https://zenodo.org/records/10617721).
 
-## Citation
-
-If you use this dataset or code, please cite:
-
-Arbash, Elias, et al. (2024). PCB-Vision: A Multiscene RGB-Hyperspectral Benchmark Dataset of Printed Circuit Boards. arXiv preprint arXiv:2401.06528.
-
-```latex
-@article{arbash2024pcb,
-  title={PCB-Vision: A Multiscene RGB-Hyperspectral Benchmark Dataset of Printed Circuit Boards},
-  author={Arbash, Elias and Fuchs, Margret and Rasti, Behnood and Lorenz, Sandra and Ghamisi, Pedram and Gloaguen, Richard},
-  journal={arXiv preprint arXiv:2401.06528},
-  year={2024}
-}
-```
-
 ## License
 
 Apache-2.0 License.
